@@ -22,7 +22,7 @@
 				</#if>
 			<#break>
 			<#case "3">
-				<@ms.editor name="${filedName}"  width="600" label="${filedName}"content="${value}"  width="688px;" appId="${appId?default(0)}"/>			
+				<@ms.editor name="${filedName}"  width="600" label="${name}"content="${value}"  width="688px;" appId="${appId?default(0)}"/>			
 				 
 			<#break>
 			<#case "4">
