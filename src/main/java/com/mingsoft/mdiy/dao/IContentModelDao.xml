@@ -79,14 +79,32 @@
 		</where>		
 	</select>
 	
-	<!--根据实体获取-->
-	<select id="getByEntity" resultMap="resultMap" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity">
+	<sql id="queryMdiyContentModelWhere">
+	    <if test="cmTipsName != null and cmTipsName != ''"> and CM_TIPS_NAME=#{cmTipsName} </if>				
+		<if test="cmTableName != null and cmTableName != ''"> and CM_TABLE_NAME=#{cmTableName} </if>				
+		<if test="cmModelId &gt; 0"> and CM_MODEL_ID=#{cmModelId} </if>
+	</sql>
+	<!--mysql根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity" databaseId="mysql">
 		select * from mdiy_content_model 
 		<where>
-			<if test="cmTipsName != null and cmTipsName != ''"> and CM_TIPS_NAME=#{cmTipsName} </if>				
-			<if test="cmTableName != null and cmTableName != ''"> and CM_TABLE_NAME=#{cmTableName} </if>				
-			<if test="cmModelId &gt; 0"> and CM_MODEL_ID=#{cmModelId} </if>				
+			<include refid="queryMdiyContentModelWhere"></include>				
 		</where>
 		limit 0,1
 	</select>	
+	<!--oracle根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity" databaseId="oracle">
+		select * from mdiy_content_model 
+		<where>
+			<include refid="queryMdiyContentModelWhere"></include>				
+		    and rownum=1
+		</where>
+	</select>
+	<!--sqlServer根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity" databaseId="sqlServer">
+		select top(1) * from mdiy_content_model 
+		<where>
+			<include refid="queryMdiyContentModelWhere"></include>				
+		</where>
+	</select>
 </mapper>

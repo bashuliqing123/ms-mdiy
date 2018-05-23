@@ -12,33 +12,56 @@
 		<result column="FF_FORMID" property="diyFormFieldFormId" />
 	</resultMap>
 
-
-	<!-- 新增表单内容模型开始 -->
-	<insert id="saveEntity" parameterType="com.mingsoft.mdiy.entity.FormFieldEntity">
+    <sql id="insertColumns">
+        <if test="diyFormFieldTipsName != null">FF_TIPSNAME,</if>
+		<if test="diyFormFieldFieldName != null">FF_FIELDNAME,</if>
+		<if test="diyFormFieldType != null">FF_TYPE,</if>
+		<if test="diyFormFieldDefault != null">FF_DEFAULT,</if>
+		<if test="diyFormFieldSort != null">FF_SORT,</if>
+		<if test="diyFormFieldIsNull != null">FF_ISNULL,</if>
+		<if test="diyFormFieldFormId != null">FF_FORMID,</if>
+    </sql>
+    <sql id="insertValues">
+        <if test="diyFormFieldTipsName != null">#{diyFormFieldTipsName},</if>
+		<if test="diyFormFieldFieldName != null">#{diyFormFieldFieldName},</if>
+		<if test="diyFormFieldType != null">#{diyFormFieldType},</if>
+		<if test="diyFormFieldDefault != null">#{diyFormFieldDefault},</if>
+		<if test="diyFormFieldSort != null">#{diyFormFieldSort},</if>
+		<if test="diyFormFieldIsNull != null">#{diyFormFieldIsNull},</if>
+		<if test="diyFormFieldFormId != null">#{diyFormFieldFormId},</if>
+    </sql>
+	<!-- mysql或sqlServer新增表单内容模型开始 -->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="diyFormFieldId" parameterType="com.mingsoft.mdiy.entity.FormFieldEntity">
 		insert into mdiy_form_field
 		<!-- 注入表字段 -->
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="diyFormFieldTipsName != null">FF_TIPSNAME,</if>
-			<if test="diyFormFieldFieldName != null">FF_FIELDNAME,</if>
-			<if test="diyFormFieldType != null">FF_TYPE,</if>
-			<if test="diyFormFieldDefault != null">FF_DEFAULT,</if>
-			<if test="diyFormFieldSort != null">FF_SORT,</if>
-			<if test="diyFormFieldIsNull != null">FF_ISNULL,</if>
-			<if test="diyFormFieldFormId != null">FF_FORMID,</if>
+			<include refid="insertColumns"></include>
 		</trim>
 
 		<!-- 注入控制层字段 -->
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="diyFormFieldTipsName != null">#{diyFormFieldTipsName},</if>
-			<if test="diyFormFieldFieldName != null">#{diyFormFieldFieldName},</if>
-			<if test="diyFormFieldType != null">#{diyFormFieldType},</if>
-			<if test="diyFormFieldDefault != null">#{diyFormFieldDefault},</if>
-			<if test="diyFormFieldSort != null">#{diyFormFieldSort},</if>
-			<if test="diyFormFieldIsNull != null">#{diyFormFieldIsNull},</if>
-			<if test="diyFormFieldFormId != null">#{diyFormFieldFormId},</if>
+			<include refid="insertValues"></include>
 		</trim>
 	</insert>
-	<!-- 新增表单内容模型结束 -->
+	<!-- mysql或sqlServer新增表单内容模型结束 -->
+	<!-- oracle新增表单内容模型开始 -->
+	<insert id="saveEntity" useGeneratedKeys="false" keyProperty="diyFormFieldId" parameterType="com.mingsoft.mdiy.entity.FormFieldEntity"  databaseId="oracle">
+		<selectKey resultType="Integer"  keyProperty="diyFormFieldId" order="BEFORE">
+			select seq_ff_id.nextval as diyFormFieldId from dual
+		</selectKey>
+		insert into mdiy_form_field
+		<!-- 注入表字段 -->
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    FF_ID,
+			<include refid="insertColumns"></include>
+		</trim>
+		<!-- 注入控制层字段 -->
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		    #{diyFormFieldId},
+			<include refid="insertValues"></include>
+		</trim>
+	</insert>
+	<!-- oracle新增表单内容模型结束 -->
 
 	<!-- 更新表单内容模型开始 -->
 	<update id="updateEntity" parameterType="com.mingsoft.mdiy.entity.FormFieldEntity">
