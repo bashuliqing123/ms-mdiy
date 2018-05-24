@@ -74,7 +74,7 @@
 				        	title: '模型表名',
 				        	formatter:function(value,row,index) {
 				        		<@shiro.hasPermission name="mdiy:content:update">	        
-						        	var url = "${managerPath}/mdiy/contentModel/contentModelField/"+row.cmId+"/list.do";
+						        	var url = "${managerPath}/mdiy/contentModel/contentModelField/"+row.cmId+"/index.do";
 				        			return "<a href=" +url+ " target='_self'>" + value + "</a>";
 					    		</@shiro.hasPermission> 
 					    		<@shiro.lacksPermission name="mdiy:content:update">

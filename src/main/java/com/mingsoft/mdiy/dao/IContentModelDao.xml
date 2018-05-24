@@ -20,24 +20,43 @@
 	<!-- 字段绑定结束 -->
 	
 	<!-- 新增表单内容模型开始 -->
-	<insert id="saveEntity" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity">
-		insert into mdiy_content_model
-		<!-- 注入表字段 -->
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="cmId != null">CM_ID,</if><!-- 内容模型id -->
+	<sql id="insertColumns">
 			<if test="cmTipsName != null">CM_TIPS_NAME,</if><!-- 表单提示文字 -->
 			<if test="cmTableName != null">CM_TABLE_NAME,</if>
 			<if test="cmModelId != null">CM_MODEL_ID,</if>
 			<if test="appId != null">CM_APP_ID,</if>
-		</trim>
-		
-		<!-- 注入控制层字段 -->
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="cmId != null">#{cmId},</if>
+	</sql>
+	<sql id="insertValues">
 			<if test="cmTipsName != null">#{cmTipsName},</if>
 			<if test="cmTableName != null">#{cmTableName},</if>
 			<if test="cmModelId != null">#{cmModelId},</if>
 			<if test="appId != null">#{appId},</if>
+	</sql>
+	<insert id="saveEntity" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity">
+		insert into mdiy_content_model
+		<!-- 注入表字段 -->
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<include refid="insertColumns"></include>
+		</trim>
+		<!-- 注入控制层字段 -->
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<include refid="insertValues"></include>
+		</trim>
+	</insert>
+	<insert id="saveEntity" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity" databaseId="oracle">
+		<selectKey resultType="Integer"  keyProperty="cmId" order="BEFORE">
+			select seq_cmId_id.nextval as cmId from dual
+		</selectKey>
+		insert into mdiy_content_model
+		<!-- 注入表字段 -->
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			CM_ID,
+			<include refid="insertColumns"></include>
+		</trim>
+		<!-- 注入控制层字段 -->
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{cmId},
+			<include refid="insertValues"></include>
 		</trim>
 	</insert>
 	<!-- 新增表单内容模型结束 -->

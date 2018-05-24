@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mingsoft.base.constant.e.TableEnum;
 import com.mingsoft.base.entity.BaseEntity;
+import com.mingsoft.base.filter.DateValueFilter;
+import com.mingsoft.base.filter.DoubleValueFilter;
 import com.mingsoft.basic.biz.IColumnBiz;
 import com.mingsoft.basic.constant.Const;
 import com.mingsoft.basic.entity.ColumnEntity;
@@ -27,6 +30,9 @@ import com.mingsoft.mdiy.biz.IContentModelBiz;
 import com.mingsoft.mdiy.biz.IContentModelFieldBiz;
 import com.mingsoft.mdiy.entity.ContentModelFieldEntity;
 import com.mingsoft.util.StringUtil;
+
+import net.mingsoft.basic.bean.EUListBean;
+import net.mingsoft.basic.util.BasicUtil;
 
 /**
  * 
@@ -49,6 +55,14 @@ public class ContentModelFieldAction extends BaseAction {
 	
 	@Autowired
 	private IColumnBiz columnBiz;
+	
+	@RequestMapping("/{contentModelId}/index")
+	public String index(@PathVariable int contentModelId, HttpServletRequest request, ModelMap model,
+			HttpServletResponse response){
+		model.addAttribute("contentModelId", contentModelId);
+		model.put("fieldTypes", ContentModelFieldEnum.toMap());
+		return view ("/mdiy/content_model/content_model_field_list");
+	}
 
 	/**
 	 * 表单列表
@@ -56,15 +70,15 @@ public class ContentModelFieldAction extends BaseAction {
 	 * @return 返回表单列表页面
 	 */
 	@RequestMapping("/{contentModelId}/list")
-	public String list(@PathVariable int contentModelId, HttpServletRequest request, ModelMap model,
+	public void list(@PathVariable int contentModelId, HttpServletRequest request, ModelMap model,
 			HttpServletResponse response) {
-		
-		List list = contentModelFieldBiz.queryListByCmid(contentModelId);
+		BasicUtil.startPage();
+		List contentModelFieldList = contentModelFieldBiz.queryListByCmid(contentModelId);
 		// 获取字段属性
 		model.put("fieldTypes", ContentModelFieldEnum.toMap());
 		model.put("contentModelId", contentModelId);
-		model.addAttribute("contentModelFieldList", list);
-		return view("/mdiy/content_model/content_model_field_list");
+		model.addAttribute("contentModelFieldList", contentModelFieldList);
+		this.outJson(response, net.mingsoft.base.util.JSONArray.toJSONString(new EUListBean(contentModelFieldList,(int)BasicUtil.endPage(contentModelFieldList).getTotal()),new DoubleValueFilter(),new DateValueFilter()));
 	}
 
 	/**
@@ -121,14 +135,11 @@ public class ContentModelFieldAction extends BaseAction {
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public void delete(HttpServletRequest request, HttpServletResponse response) {
-		String fieldIds = request.getParameter("fieldId");
-		if (!StringUtil.isBlank(fieldIds) && StringUtil.isIntegers(fieldIds.split(","))) {
-			int[] ids = StringUtil.stringsToInts(fieldIds.split(","));
-			for (int i=0;i<ids.length;i++) {
+	public void delete(@RequestBody List<ContentModelFieldEntity> contentModelFields,HttpServletRequest request, HttpServletResponse response) {
+			for (int i=0;i<contentModelFields.size();i++) {
 				//获取要删除的字段实体
-				ContentModelFieldEntity field = (ContentModelFieldEntity) contentModelFieldBiz.getEntity(ids[i]);
-				contentModelFieldBiz.deleteEntity(ids[i]);
+				ContentModelFieldEntity field = (ContentModelFieldEntity) contentModelFieldBiz.getEntity(contentModelFields.get(i).getFieldId());
+				contentModelFieldBiz.deleteEntity(contentModelFields.get(i).getFieldId());
 				//获取内容模型实体
 				ContentModelEntity contentModel = (ContentModelEntity) contentModelBiz.getEntity(field.getFieldCmid());
 				if(contentModel != null){
@@ -140,7 +151,6 @@ public class ContentModelFieldAction extends BaseAction {
 				}
 			}
 			this.outJson(response, true);
-		}
 	}
 
 	/**
