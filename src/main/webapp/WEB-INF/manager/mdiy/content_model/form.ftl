@@ -5,8 +5,8 @@
     <@ms.panel>
     	<@ms.form name="contentModelForm" isvalidation=true>
     		<@ms.hidden name="cmId" value="${contentModelEntity.cmId?default('')}"/>
-    			<@ms.text label="表单提示文字" name="cmTipsName" value="${contentModelEntity.cmTipsName?default('')}"  width="240px;" placeholder="请输入表单提示文字" validation={"required":"false","maxlength":"50","data-bv-stringlength-message":"表单提示文字长度不能超过五十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
-    			<@ms.text label="表单名称" name="cmTableName" value="${contentModelEntity.cmTableName?default('')}"  width="240px;" placeholder="请输入表单名称" validation={"required":"false","maxlength":"50","data-bv-stringlength-message":"表单名称长度不能超过五十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
+    			<@ms.text label="表单提示文字" name="cmTipsName" value="${contentModelEntity.cmTipsName?default('')}"  width="240px;" placeholder="请输入表单提示文字" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"表单提示文字长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
+    			<@ms.text label="表单名称" name="cmTableName" value="${contentModelEntity.cmTableName?default('')}"  width="240px;" placeholder="请输入表单名称" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"表单名称长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
     	</@ms.form>
     </@ms.panel>
 </@ms.html5>
