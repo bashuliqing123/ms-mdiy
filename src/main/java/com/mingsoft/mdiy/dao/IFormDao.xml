@@ -151,9 +151,9 @@
 	<update id="createDiyFormTable" statementType="STATEMENT" databaseId="oracle">
 	    begin 
 		execute immediate 'create TABLE ${table}(
-		Id number(11) NOT NULL PRIMARY KEY,
-		dates date  DEFAULT NULL,
-		fromID number(11) DEFAULT NULL
+		"ID" number(11) NOT NULL PRIMARY KEY,
+		"DATE" date  DEFAULT NULL,
+		"FROMID" number(11) DEFAULT NULL
 		)';
 		execute immediate 'create sequence seq_${table}_Id 
         increment by 1

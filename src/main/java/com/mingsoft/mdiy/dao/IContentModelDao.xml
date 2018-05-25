@@ -45,7 +45,7 @@
 	</insert>
 	<insert id="saveEntity" parameterType="com.mingsoft.mdiy.entity.ContentModelEntity" databaseId="oracle">
 		<selectKey resultType="Integer"  keyProperty="cmId" order="BEFORE">
-			select seq_cmId_id.nextval as cmId from dual
+			select seq_cm_id.nextval as cmId from dual
 		</selectKey>
 		insert into mdiy_content_model
 		<!-- 注入表字段 -->
