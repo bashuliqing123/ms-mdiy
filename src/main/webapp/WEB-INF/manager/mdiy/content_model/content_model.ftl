@@ -84,7 +84,7 @@
 				<!--字段名称-->
 				<@ms.col size="4" style="text-align: right;">字段名称</@ms.col>
 				<@ms.col size="7">
-					<@ms.text title="名称" size="3" value=""  placeholder="请输入字段名称" name="fieldFieldName"  validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z0-9]+$',"data-bv-regexp-message":"字段名只能为字符!"}  />
+					<@ms.text title="名称" size="3" value=""  placeholder="请输入字段名称" name="fieldFieldName"  validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z0-9_]+$',"data-bv-regexp-message":"字段名只能为字符!"}  />
 				</@ms.col>				
 				<!--数据类型-->
 				<@ms.hidden name="fieldCmid" value="${contentModel.cmId?default(0)}"  />
@@ -149,7 +149,7 @@
 		                validators: {
 		                    notEmpty: {message: '字段名称不能为空'},
 		                    stringLength: {min: 1,max: 13,message: '字段长度介于1-13个字符'},
-		                    regexp: {regexp: /^[a-zA-Z0-9]+$/,message: '字段名只能由英文字母，数字组成'}
+		                    regexp: {regexp: /^[a-zA-Z0-9_]+$/,message: '字段名只能由英文字母，数字组成'}
 		                }
 		            },
 		        }

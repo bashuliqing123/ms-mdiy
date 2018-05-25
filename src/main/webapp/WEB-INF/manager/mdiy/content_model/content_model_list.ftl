@@ -34,7 +34,7 @@
 			<!--模型名称-->
 			<@ms.text label="名称" name="cmTipsName" title="名称"   placeholder="请输入模型名称"  validation={"required":"true", "data-bv-notempty-message":"名称不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"10","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-15个字符"}/>
 			<!--模型表名-->
-			<@ms.text label="表名" name="cmTableName"  title="名称" maxlength="15"  placeholder="表名只能为英文字符"  validation={"required":"true", "data-bv-regexp":"true","data-bv-regexp-regexp":"^[a-zA-Z]+$","data-bv-regexp-message":"表名只能是字母组成","data-bv-notempty-message":"名称不能为空且只能由字母组成！","data-bv-stringlength":"true","data-bv-stringlength-max":"10","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-15个字符"}/>
+			<@ms.text label="表名" name="cmTableName"  title="名称" maxlength="15"  placeholder="表名只能为英文字符"  validation={"required":"true", "data-bv-regexp":"true","data-bv-regexp-regexp":"^[a-zA-Z_]+$","data-bv-regexp-message":"表名只能是字母组成","data-bv-notempty-message":"名称不能为空且只能由字母组成！","data-bv-stringlength":"true","data-bv-stringlength-max":"10","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-15个字符"}/>
 		</@ms.form>		
 	</@ms.modalBody>
 	<@ms.modalButton>

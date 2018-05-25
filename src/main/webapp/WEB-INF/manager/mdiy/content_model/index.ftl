@@ -30,7 +30,7 @@
 		<@ms.modalBody>
 			<@ms.form isvalidation=true name="addEditForm"  action="" method="post"  >
 				<@ms.text name="cmTipsName" id="cmTipsName" label="名称" labelStyle="width:25%" width="250" title="表名提示文字" placeholder="请输入模型名称" value="" validation={"maxlength":"20","required":"true", "data-bv-notempty-message":"表名提示文字不能为空","data-bv-stringlength-message":"表名提示文字在20个字符以内!"}/>
-				<@ms.text name="cmTableName"  label="表名" labelStyle="width:25%" width="250" title="表单名称" placeholder="请输入表名（仅英文字符）" value="" validation={"maxlength":"20","data-bv-regexp":"true","required":"true", "data-bv-regexp-regexp":"^[a-zA-Z]+$","data-bv-regexp-message":"表名只能为英文字符!","data-bv-notempty-message":"表单名称不能为空","data-bv-stringlength-message":"表单名称在20个字符以内!"}/>
+				<@ms.text name="cmTableName"  label="表名" labelStyle="width:25%" width="250" title="表单名称" placeholder="请输入表名（仅英文字符）" value="" validation={"maxlength":"20","data-bv-regexp":"true","required":"true", "data-bv-regexp-regexp":"^[a-zA-Z_]+$","data-bv-regexp-message":"表名只能为英文字符!","data-bv-notempty-message":"表单名称不能为空","data-bv-stringlength-message":"表单名称在20个字符以内!"}/>
 			</@ms.form>
 		</@ms.modalBody>
 		<@ms.modalButton>

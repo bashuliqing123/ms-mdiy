@@ -26,7 +26,7 @@
 	    		<@ms.hidden name="fieldId" value="0"  />
 	    		<@ms.text label="提示文字" maxlength="10" value="" placeholder="请输入提示文字" name="fieldTipsName" validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符"} />
 	    		<@ms.text label="字段名" maxlength="10" value=""  placeholder="请输入字段名称" name="fieldFieldName"  
-	    		validation={"required":"true", "data-bv-regexp":"true","data-bv-regexp-regexp":"^[a-zA-Z]+$","data-bv-regexp-message":"只能是字母组成","data-bv-notempty-message":"名称不能为空且只能由字母组成！","data-bv-stringlength":"true","data-bv-stringlength-max":"10","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-15个字符"}/>			
+	    		validation={"required":"true", "data-bv-regexp":"true","data-bv-regexp-regexp":"^[a-zA-Z_]+$","data-bv-regexp-message":"只能是字母组成","data-bv-notempty-message":"名称不能为空且只能由字母组成！","data-bv-stringlength":"true","data-bv-stringlength-max":"10","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-15个字符"}/>			
 	    		<@ms.select label="类型" list=fieldTypes name="fieldType" value="1"/>
 	    		<#--@ms.text label="长度" name="fieldLength" value="0" maxlength="5" validation={"data-bv-regexp":"true","data-bv-regexp-regexp":"^[0-9]+$","data-bv-regexp-message":"只能是整型"}/-->
 	    		<@ms.radio label="必填字段" name="fieldIsNull" list=[{"key":"0","value":"必填"},{"key":"1","value":"可选"}] listKey="key" listValue="value" value="0"/>

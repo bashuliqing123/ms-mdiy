@@ -15,7 +15,7 @@
 				<!--自定义表单名称-->
 				<@ms.text title="名称" label="自定义表单名称" width="300" size="3" value="" placeholder="请输入自定义表单名称" name="diyFormTipsName" validation={"required":"true", "data-bv-notempty-message":"名称不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"20","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-20个字符"} />
 				<!--自定义表单表名-->
-				<@ms.text title="名称" label="自定义表单表名" width="300" name="diyFormTableName" size="3" value="" help="注：自定义表单表名一旦保存不能再更改" placeholder="表名只能为英文字符" name="diyFormTableName" validation={"required":"true", "data-bv-notempty-message":"名称不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"20","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-20个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z]+$',"data-bv-regexp-message":"表单名称只能由英文字母组成!"}/>
+				<@ms.text title="名称" label="自定义表单表名" width="300" name="diyFormTableName" size="3" value="" help="注：自定义表单表名一旦保存不能再更改" placeholder="表名只能为英文字符" name="diyFormTableName" validation={"required":"true", "data-bv-notempty-message":"名称不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"20","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-20个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z_]+$',"data-bv-regexp-message":"表单名称只能由英文字母组成!"}/>
     		</@ms.form>
 		</#if>
 		<#if diyForm?has_content>
@@ -47,7 +47,7 @@
 	<@ms.modalBody height="500">
 		<@ms.form isvalidation=true name="fieldForm" action="">
 			<@ms.text title="名称" label="字段提示文字"  width="200" size="3"  value="" placeholder="请输入提示文字" name="diyFormFieldTipsName" validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符"} />
-			<@ms.text title="名称" label="字段名称"  width="200" size="3" value=""  placeholder="请输入字段名称" name="diyFormFieldFieldName"  validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z]+$',"data-bv-regexp-message":"不能输入特殊字符!"}  />
+			<@ms.text title="名称" label="字段名称"  width="200" size="3" value=""  placeholder="请输入字段名称" name="diyFormFieldFieldName"  validation={"required":"true", "data-bv-notempty-message":"不能为空","data-bv-stringlength":"true","data-bv-stringlength-max":"100","data-bv-stringlength-min":"1","data-bv-stringlength-message":"长度介于1-100个字符","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z_]+$',"data-bv-regexp-message":"不能输入特殊字符!"}  />
 			<@ms.formRow label="数据类型"  width="300">
             	<div id="fieldTypeInfo" class="col-sm-10 ms-from-group-input ms-form-input">
 				</div>
