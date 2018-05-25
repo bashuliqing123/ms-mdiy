@@ -6,12 +6,12 @@
 		<#if formEntity.formId?has_content>
 			<@ms.form name="diyForm" isvalidation=true  action="${managerPath}/mdiy/form/update.do">
 				<@ms.text label="自定义表单提示文字" name="formTipsName" value="${(formEntity.formTipsName)?default('')}"  width="240px;" placeholder="请输入自定义表单名称" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单提示文字长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
-    			<@ms.text label="自定义表单表名" name="formTableName" readonly="true" value="${(formEntity.formTableName)?default('')}"  width="240px;" placeholder="请输入自定义表单表名" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单表名长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z_]+$',"data-bv-regexp-message":"表名只能为英文字符!"}/>		
+    			<@ms.text label="自定义表单表名" name="formTableName" readonly="true" value="${(formEntity.formTableName)?default('')}"  width="240px;" placeholder="请输入自定义表单表名" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单表名长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z0-9_]+$',"data-bv-regexp-message":"表名只能为英文字符!"}/>		
 			</@ms.form>
 		<#else>
 			<@ms.form  name="diyForm" isvalidation=true action="${managerPath}/mdiy/form/save.do">
 				<@ms.text label="自定义表单提示文字" name="formTipsName" value=""  width="240px;" placeholder="请输入自定义表单名称" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单提示文字长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目"}/>
-    			<@ms.text label="自定义表单表名" name="formTableName" value=""  width="240px;" placeholder="请输入自定义表单表名" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单表名长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z_]+$',"data-bv-regexp-message":"表名只能为英文字符!"}/>
+    			<@ms.text label="自定义表单表名" name="formTableName" value=""  width="240px;" placeholder="请输入自定义表单表名" validation={"required":"false","maxlength":"20","data-bv-stringlength-message":"自定义表单表名长度不能超过二十个字符长度!", "data-bv-notempty-message":"必填项目","data-bv-regexp":"true","data-bv-regexp-regexp":'^[A-Za-z0-9_]+$',"data-bv-regexp-message":"表名只能为英文字符!"}/>
     		</@ms.form>
 		</#if>
 		<#if formEntity.formId?has_content>

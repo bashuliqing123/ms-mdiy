@@ -61,7 +61,7 @@ public class ContentModelFieldAction extends BaseAction {
 			HttpServletResponse response){
 		model.addAttribute("contentModelId", contentModelId);
 		model.put("fieldTypes", ContentModelFieldEnum.toMap());
-		return view ("/mdiy/content_model/content_model_field_list");
+		return view ("/mdiy/content_model/index-filed");
 	}
 
 	/**
