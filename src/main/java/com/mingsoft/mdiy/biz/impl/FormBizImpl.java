@@ -32,14 +32,14 @@ public class FormBizImpl extends BaseBizImpl implements IFormBiz {
 	/**
 	 * 自定义表单的默认字段
 	 */
-	private static final String FORM_ID = "fromID";
+	private static final String FORM_ID = "FROMID";
 	
-	private static final String DATE = "date";
+	private static final String DATE = "DATE";
 	
 	/**
 	 * 自定义表单生成的表自增长编号
 	 */
-	private static final String  ID = "id";
+	private static final String  ID = "ID";
 	
 	/**
 	 * 注入自定义表单持久化层
@@ -137,7 +137,7 @@ public class FormBizImpl extends BaseBizImpl implements IFormBiz {
 		// 遍历字段名
 		for (int i = 0; i < listField.size(); i++) {
 			FormFieldEntity field = (FormFieldEntity) listField.get(i);
-			String fieldName = field.getDiyFormFieldFieldName();
+			String fieldName = field.getDiyFormFieldFieldName().toUpperCase();
 //			int fieldType = field.getDiyFormFieldType();
 //			if (fieldType == DiyFormFieldEnum. ) {
 //				String langtyp[] = (String[])params.get(fieldName);
