@@ -137,7 +137,7 @@ public class FormBizImpl extends BaseBizImpl implements IFormBiz {
 		// 遍历字段名
 		for (int i = 0; i < listField.size(); i++) {
 			FormFieldEntity field = (FormFieldEntity) listField.get(i);
-			String fieldName = field.getDiyFormFieldFieldName().toUpperCase();
+			String fieldName = field.getDiyFormFieldFieldName();
 //			int fieldType = field.getDiyFormFieldType();
 //			if (fieldType == DiyFormFieldEnum. ) {
 //				String langtyp[] = (String[])params.get(fieldName);

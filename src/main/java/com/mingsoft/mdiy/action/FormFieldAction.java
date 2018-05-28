@@ -181,6 +181,8 @@ public class FormFieldAction extends com.mingsoft.mdiy.action.BaseAction {
 		fields.put("fieldName", diyFormfield.getDiyFormFieldFieldName());
 		// 字段的数据类型
 		fields.put("fieldType", diyFormfield.getDiyFormFieldColumnType());
+		// 字段的默认值
+		fields.put("default", diyFormfield.getDiyFormFieldDefault());	
 		if (diyForm == null) {
 			this.outJson(response, null, false, this.getResString("err.not.exist"));
 			return;

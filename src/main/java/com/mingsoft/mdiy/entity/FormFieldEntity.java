@@ -1,5 +1,7 @@
 package com.mingsoft.mdiy.entity;
 
+import org.springframework.util.StringUtils;
+
 import com.mingsoft.base.constant.e.TableCloumnEnum;
 import com.mingsoft.base.entity.BaseEntity;
 import com.mingsoft.mdiy.constant.e.ContentModelFieldEnum;
@@ -73,21 +75,23 @@ public class FormFieldEntity extends BaseEntity{
 	}
 
 	public String getDiyFormFieldDefault() {
-		if (this.diyFormFieldType == DiyFormFieldEnum.DATE.toInt()
-				|| this.diyFormFieldType == DiyFormFieldEnum.TEXTAREA.toInt()) {
-			return null;
-		} else if (this.diyFormFieldType == DiyFormFieldEnum.FLOAT.toInt()
-				|| this.diyFormFieldType == DiyFormFieldEnum.INT.toInt()
-				)  {
-			return "0";	
-		}
-				
+		if("0".equals(this.diyFormFieldDefault) || "null".equals(this.diyFormFieldDefault)){
+			if (this.diyFormFieldType == DiyFormFieldEnum.DATE.toInt()
+					|| this.diyFormFieldType == DiyFormFieldEnum.TEXTAREA.toInt()) {
+				return "null";
+			} else if (this.diyFormFieldType == DiyFormFieldEnum.FLOAT.toInt()
+					|| this.diyFormFieldType == DiyFormFieldEnum.INT.toInt()) {
+				return "0";
+			}
+		}else{
+			return this.diyFormFieldDefault;
+		}		
 
 		return diyFormFieldDefault;
 	}
 
 	public String getDiyFormFieldFieldName() {
-		return diyFormFieldFieldName;
+		return diyFormFieldFieldName.toUpperCase();
 	}
 
 	public int getDiyFormFieldFormId() {
