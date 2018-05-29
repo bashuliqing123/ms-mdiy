@@ -70,6 +70,7 @@ $(function(){
 	       					title: '字段名',
 	       					align: 'center',
 	        				formatter:function(value,row,index) {
+	        				    return "<a style='cursor:pointer;text-decoration:none;' onclick='upContentModelFieldBtn("+row.fieldId+")'>" + value + "</a>";
 				   				return value;
 							}
 	    				}, {
@@ -111,7 +112,8 @@ $(function(){
 				  return value;
 			}
 	    }]
-	    })
+	    
+	});
 	})
 //删除按钮
 	$("#delContentModelFieldBtn").click(function(){
@@ -182,7 +184,11 @@ function editContentModelField(fieldId){
 		$("#addEditModelTitle").text("添加字段");
 		$("#fieldForm")[0].reset();
 		$(".contentModelField").modal();
-	})
+	});
+	function upContentModelFieldBtn(fieldId){
+	    editContentModelField(fieldId);
+		$(".contentModelField").modal();
+	}
 
 function resetForm() {
 		$("#contentModelField input[name='fieldId']").val(0);
