@@ -189,9 +189,16 @@
 								// 当用户选择的是数字类型时,默认值只能为数字
 								if(fieldType=="4"||fieldType =="5"){
 									if((isNaN($("textarea[name='diyFormFieldDefault']").val()))){
-										$($("textarea[name='diyFormFieldDefault']")).val("");
+										$("textarea[name='diyFormFieldDefault']").val("");
 										flag = false;
 										<@ms.notify msg= "字段类型为数字类型,默认值只能为数字" type= "warning" />
+									}
+								}
+								// 当用户选择的是日期和文本类型时,默认值不能有
+								if(fieldType=="2"||fieldType =="3"){
+									if($("textarea[name='diyFormFieldDefault']").val()!=""){
+										flag = false;
+										<@ms.notify msg= "字段类型为日期、文本类型,默认值只能为空" type= "warning" />
 									}
 								}
 								var vobj = $("#fieldForm").data('bootstrapValidator').validate();
