@@ -151,10 +151,10 @@ public class FormBizImpl extends BaseBizImpl implements IFormBiz {
 //					mapParams.put(fieldName, langtyp);
 //				}
 //			} else {
-				if (StringUtil.isBlank(params.get(fieldName))) {
+				if (StringUtil.isBlank(params.get(fieldName.toLowerCase()))) {
 					mapParams.put(fieldName, null);
 				} else {
-					mapParams.put(fieldName, params.get(fieldName));
+					mapParams.put(fieldName, params.get(fieldName.toLowerCase()));
 				}
 			//			}
 		}
